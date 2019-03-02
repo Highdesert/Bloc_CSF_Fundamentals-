@@ -1,0 +1,59 @@
+Short Answers: 
+
+1. Programmers use pseudocode to help develop algorithms. It is a way to express code without using a particular languages syntax. Pseudocode is meant for humans, not machines. 
+
+2. We would be able to read the pseudocode. 
+
+
+FUNCTION greater than
+  INPUT first number
+  INPUT Second number
+
+  IF first number is greater than second number
+    RETURN first number
+
+  ElSE
+    RETURN second number;
+
+  END IF
+
+END function
+
+
+FUNCTION printNumbers 
+  
+  INIT number to 1
+  
+  WHILE number less than or equal to 100 
+      
+      INCREASE number by 1 until the condition is met
+   
+   END while
+  
+    RETURN num
+
+  END FUNCTION
+
+
+CREATE FUNCTION
+  INIT name to Sarah
+    WHILE name doest not equal Sarah
+     INCREMENT name by one until the condition is met
+    END while
+
+  RETURN name
+
+  END Function  
+    
+
+
+
+const greaterThan = (num1, num2) => {
+  return num1 > num2 ? num1 : num2;
+ };
+
+console.log(greaterThan(1, 4));
+
+
+
+
