@@ -1,0 +1,44 @@
+1. Clean code is the standard way to write code that is easy to read and maintain. Not only is writing code about problem solving, but it is also about naming variables and functions with relevant names(verbs, nouns) and making them read almost like english text. Keeping functions clean with writing only code that needs to be maintained by such functions. Don't overload a class or function with unnecessary code that is not relevant to said function or that could be used in other functions making our code more dynamic and abstract.  
+
+2. I read recently that NASA had malfunctions with data that caused an Astronaut to experience a life or death situation when water started flowing into his helmet right before a space walk. The reason that this happened is that the data coming back from the suit was strewn across multiple data collecting systems and it was hard for the engineers to narrow down the cause and where to start looking because their data was not scalable. Thankfully, another Astronaut was nearby and helped him back to the station and NASA put an immediate halt to all non-emergency space-walks at that time. Since then they have went to Node.Js and have been able to get their data processing down from 28-steps to 7-steps which in turn results in safer missions because there is more maintainable and scalable code. 
+
+https://foundation.nodejs.org/wp-content/uploads/sites/50/2017/09/Node_CaseStudy_Nasa_FNL.pdf
+
+
+3. I would refractor the code without the comments and change the name of the function:
+
+
+FUNCTION convertFahrenheitToCelsius(x, y) 
+
+  IF = y = 'F' THEN
+    SET z to (x-32) * (5/9)
+    PRINT z
+
+  ELIF y = 'C' THEN 
+    SET z to x * 1.800 + 32.00
+    PRINT z
+
+    END IF
+  END FUNCTION
+
+
+4. This code looks clean to me. I would change the function name from: 
+
+FUNCTION calcPercent to FUNCTION calculatePercentage -- but I'm not sure if thats needed here. 
+
+
+5. FUNCTION checkOutCustomer (subTotal, discountRate, paymentType) 
+
+  PRINT `Your total due is: subTotal * discountRate 
+
+    IF paymentType === 'Cash' THEN
+      CALL getPayment RETURNING amount
+
+      PRINT
+
+
+      const checkOutCustomer = (subTotal, discountRate, paymentType) => {
+          if (paymentType === 'Cash') {
+            return getPayment()
+          } 
+      }
