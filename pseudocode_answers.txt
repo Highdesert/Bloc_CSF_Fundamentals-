@@ -37,7 +37,7 @@ FUNCTION printNumbers
 
 CREATE FUNCTION
   INIT name to Sarah
-    WHILE name doest not equal Sarah
+    WHILE name does not equal Sarah
      INCREMENT name by one until the condition is met
     END while
 
@@ -45,15 +45,18 @@ CREATE FUNCTION
 
   END Function  
     
+const names = ['Alex', 'Sarah', 'Ben', 'George']; 
 
+const searchNames = (arr) => {
+  let name = 'Sarah'; 
 
+  while(name !== 'Sarah') {
+    arr++
+  }
+  return name; 
+}
 
-const greaterThan = (num1, num2) => {
-  return num1 > num2 ? num1 : num2;
- };
-
-console.log(greaterThan(1, 4));
-
+searchNames(); 
 
 
 
