@@ -2,7 +2,7 @@ Short Answers:
 
 1. Programmers use pseudocode to help develop algorithms. It is a way to express code without using a particular languages syntax. Pseudocode is meant for humans, not machines. 
 
-2. We would be able to read the pseudocode. 
+2. If you run pseudocode on your computer you will get a syntax error when trying to execute it. 
 
 
 FUNCTION greater than
@@ -47,15 +47,15 @@ CREATE FUNCTION
     
 const names = ['Alex', 'Sarah', 'Ben', 'George']; 
 
+
 const searchNames = (arr) => {
   let name = 'Sarah'; 
 
   while(name !== 'Sarah') {
     arr++
   }
-  return name; 
+  return name;
 }
-
 searchNames(); 
 
 
