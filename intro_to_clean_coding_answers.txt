@@ -42,3 +42,12 @@ FUNCTION calcPercent to FUNCTION calculatePercentage -- but I'm not sure if that
             return getPayment()
           } 
       }
+
+
+
+Ask Shakir: 
+
+global vs local install NPM 
+best way to working between two computers
+should I use a freeze?
+do I really know what I'm doing? 
