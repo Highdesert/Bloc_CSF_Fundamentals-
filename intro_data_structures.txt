@@ -1,0 +1,49 @@
+Exercises 
+
+1. A line of people at an amusement park ride 
+
+Given the above real-world information, use an array data structure to code the following solution.
+
+a) Use an array input: ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+
+    const members = ['Vivian', 'Ava', 'Josh', 'Patrick', 'Mike']; 
+
+b) Insert a new person, "Mary" at the end of the line. In other words, you should insert Mary after Mike.
+
+    members.push('Mary'); 
+
+c) Find a person in line named "Josh." This function should return the position of 2 in the array, (recall that arrays are 0-based).
+
+    const findJosh = () => {
+      return members.indexOf('Josh'); 
+    }
+
+
+d) Find a person in line named "Emily." What should your function return if it does not find the item in the array?
+
+    const findEmily = () => {
+      return members.indexOf('Emily');
+    }
+
+    **Should return -1 if Emily is not found. 
+
+e) What if Ava wants to allow a friend, "Melissa", to cut in line in front of her? How would you code this so Melissa appears before Ava?
+
+    members.splice(1, 0, 'Mellissa'); 
+
+
+f) If Patrick wants to leave the line, how would you delete him from the array?
+
+    members.splice(3, 1)
+
+
+2. Provide another real-world example that you can model using a data structure.
+
+    My daily programming todo list could be stored in side an array
+
+      const todos = ['Study JS', 'Learn data structures', 'Increase brain capacity', 'Stay motivated']
+
+3.How would your data structure allow developers to access and manipulate the data?
+
+    Since my data structure is base on an array, developers would be able to manipulate the data by using various array methods by accessing the index of the data stored at the array index. 
+*/
