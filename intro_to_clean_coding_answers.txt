@@ -7,18 +7,11 @@ https://foundation.nodejs.org/wp-content/uploads/sites/50/2017/09/Node_CaseStudy
 
 3. I do not consider the code to be clean and I would refractor the code without the comments and change the name of the function:
 
-FUNCTION convertFahrenheitToCelsius(x, y) 
+FUNCTION celsuisToFarhenheit() 
 
-  IF farhenheit = 'F' THEN 
-    SET temperature to (celsius - 32) * (5 / 9)
-    PRINT temperature
-  
-  ELIF farhenheit = 'C' THEN
-    SET temperature to celsius * 1.8000 + 32.00
-    PRINT temperature
-  
-  END IF
 
+  
+  
 END FUNCTION
 
 
@@ -31,7 +24,7 @@ END FUNCTION
 a. The following function prints the subtotal of a customer's transaction and receives payment accordingly.
 
  FUNCTION printCustomerBill(subTotal, discountRate, paymentType)
-      
+    
     PRINT 'Your total due is: ' + subTotal * discountRate + (subTotal * tax)
 
    END FUNCTION
@@ -44,7 +37,7 @@ a. The following function prints the subtotal of a customer's transaction and re
       
       PRINT 'Change due: ' + amount - subTotal * discountRate + (subTotal * tax)
 
-    ELIF paymentType equals 'Credit Card' THEN 
+    ELSE IF paymentType equals 'Credit Card' THEN 
       
       CALL getPayment RETURNING amount
       
@@ -65,7 +58,7 @@ b. The following function checks out a book if there are no issues with the gues
 
         PRINT 'Unable to check out book'
       
-      ELIF guest.oustandingFee equals 0 THEN
+      ELSE IF guest.oustandingFee equals 0 THEN
 
         APPEND book to guest.books 
 
@@ -73,7 +66,7 @@ b. The following function checks out a book if there are no issues with the gues
 
         PRINT 'Your books have been issued'
       
-      END ELIF
+      END ELSE IF
     
     END FUNCTION
 
@@ -159,7 +152,7 @@ getSquare(arr);
 
 const findDuplicates = (arr) => {
   for (let i = 0; i < arr.length; i++) {
-    for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
       if (i !== j && arr[i] === arr[j]) {
         return true
       }
@@ -172,3 +165,70 @@ let arr = [1, 1, 2, 3, 4, 4]
 
 findDuplicates(arr); 
 
+##### REVISED #####
+
+3. I do not consider the code to be clean and I would refractor the code without the comments and change the function into to separate functions if that is allowed:
+
+FUNCTION convertCToF(celsius)
+
+      INIT fahrenheit to celsius * (9 / 5) + 32; 
+
+        RETURN fahrenheit
+
+    END FUNCTION
+
+FUNCTION convertFtoC(fahrenheit)
+
+      INIT celsius to ((fahrenheit - 32) * 5) / 9
+
+        RETURN celsius
+
+    END FUNCTION 
+
+    
+
+        
+
+5. Using pseudocode, refactor the code for the following examples using the principles you have learned in this checkpoint.
+ 
+a. The following function prints the subtotal of a customer's transaction and receives payment accordingly.
+
+FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
+        INIT tax to 0.08
+       
+        INIT total to subTotal * discountRate + (subTotal * tax)
+
+        PRINT "Your total due is: " + total; 
+ 
+    IF paymentType equals 'CASH' THEN 
+       
+        CALL getPayment RETURNING amount
+    
+        PRINT 'Change due: ' + amount - total
+
+    ELSE IF paymentType equals 'CREDIT CARD THEN
+        CALL getPayment RETURNING amount
+
+        PRINT 'Your credit cared has been charged: ' + total; 
+
+    END IF
+
+END FUNCTION
+
+
+7. Duplicate Given an array of integers, find out whether the array contains any duplicate elements. The function should return true if any value appears at least twice in the array, and false if every element is distinct.
+
+const findDuplicates = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (i !== j && arr[i] === arr[j]) {
+        return true
+      }
+    }
+  }
+  return false; 
+}
+
+let arr = [1, 1, 2, 3, 4, 4]
+
+findDuplicates(arr); 
