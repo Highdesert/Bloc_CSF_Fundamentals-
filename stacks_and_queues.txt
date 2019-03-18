@@ -38,7 +38,30 @@ console.log(reverse("Andy"));
 
 2. Implement the pop method of a stack using one queue. Make a FIFO data structure mirror the functionality of a LIFO data structure. Since the internal list is not the same as defined in the checkpoint, it may help to rewrite the pseudocode first.
 
-I don't really understand this question.  
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.tail = null;
+    this.head = null;
+  }
+  
+  dequeue() {
+    if (!this.head) {
+      return "No item";
+    } else {
+      let itemToPop = this.head;
+      this.head = this.head.next;
+      return itemToPop;
+    }
+  }
+}
+  
 
 To delete an item, take all of the elements in the queue one at a time and put them at the end of the queue, except for the last one which should be removed and returned.
 
