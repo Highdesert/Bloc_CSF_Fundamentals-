@@ -1,0 +1,135 @@
+1. What is a hash table?
+
+  A hash table is a type of data structure that stores key-value pairs. Keys must be unique in a hash table allowing us to retrieve a value based on its unique key. 
+
+2. What is hashing?
+
+  Hashing is the conversion from a string to a numerical index. 
+
+3. How does a hash table store data?
+
+  Hash tables store key-value pairs by placing them at a specific location in an array maintained internally in the hash table. 
+
+  4. How are hash tables and objects different? 
+
+    Hash tables are a data structure that allows us to use JavaScript objects to create a numerically indexed structure to store key-value pairs. They differ from objects because objects store properties, and not key-value pairs. 
+
+
+  5. Determine whether you would use a hash table or an object to store each of the following pieces of data: 
+
+1. A list of pets and their unique names. - Object
+2. The name, age, and the birthday of your best friend. - Object
+3. The name and location of every company in a given city. - Hash Table
+4. All of the books checked out from a library by a particular individual. - Hash Table
+5. The primary and secondary phone numbers for a contact. - Hash Table
+
+Programming Questions: 
+
+class HashTable {
+  constructor(size = 53) {
+    this.keyMap = new Array(size);
+  }
+  _hash(key) {
+    let total = 0;
+    let WEIRD_PRIME = 31;
+    for (let i = 0; i < Math.min(key.length, 100); i++) {
+      let char = key[i];
+      let value = char.charCodeAt(0) - 96;
+      total = (total * WEIRD_PRIME + value) % this.keyMap.length;
+    }
+    return total;
+  }
+  set(key, value) {
+    let index = this._hash(key);
+    if (!this.keyMap[index]) {
+      this.keyMap[index] = [];
+    }
+    this.keyMap[index].push([key, value]);
+  }
+  get(key) {
+    let index = this._hash(key);
+    if (this.keyMap[index]) {
+      for (let i = 0; i < this.keyMap[index].length; i++) {
+        if (this.keyMap[index][i][0] === key) {
+          return this.keyMap[index][i][1];
+        }
+      }
+    }
+    return undefined;
+  }
+  keys() {
+    let keysArr = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!keysArr.includes(this.keyMap[i][j][0])) {
+            keysArr.push(this.keyMap[i][j][0]);
+          }
+        }
+      }
+    }
+    return keysArr;
+  }
+  values() {
+    let valuesArr = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!valuesArr.includes(this.keyMap[i][j][1]))
+            valuesArr.push(this.keyMap[i][j][1]);
+        }
+      }
+    }
+    return valuesArr;
+  }
+}
+
+
+
+
+
+
+
+1. Create a hash table that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers.
+
+let ht = new HashTable(17);
+ht.set(999 - 999 - 9999, {
+  name: "Kim",
+  address: " 0000 Over The Hill St"
+});
+ht.set(888 - 888 - 8888, {
+  name: "Andy",
+  address: " 123 Blossom Ave"
+});
+ht.set(777 - 777 - 7777, {
+  name: "Bob",
+  address: " 123 Snowy Lane"
+});
+
+console.log(ht.get(888 - 888 - 8888));
+console.log(ht.get(777 - 777 - 7777));
+console.log(ht.get(999 - 999 - 9999));
+
+2. Create a hash table that allows a store owner to track their store's inventory and quantity.
+
+let ht1 = new HashTable();
+ht1.set("Hoody", 115);
+ht1.set("Shirt", 350);
+ht1.set("Pants", 200);
+ht1.set("Shorts", 100);
+
+console.log(ht1.get("Shirt"));
+console.log(ht1.get("Pants"));
+console.log(ht1.get("Shorts"));
+
+3. Create a hash table that allows digital copies of newspapers to be entered and searched by publisher and publication date.
+
+let news = new HashTable();
+news.set("Author 1", "2013");
+news.set("Author 2", "2001");
+news.set("Author 3", "2000");
+news.set("Author 4", "2019");
+
+console.log(news.get("Author 1"));
+console.log(news.get("Author 3"));
+console.log(news.get("Author 2"));
