@@ -17,11 +17,11 @@
 
   5. Determine whether you would use a hash table or an object to store each of the following pieces of data: 
 
-1. A list of pets and their unique names. - Object
-2. The name, age, and the birthday of your best friend. - Object
-3. The name and location of every company in a given city. - Hash Table
-4. All of the books checked out from a library by a particular individual. - Hash Table
-5. The primary and secondary phone numbers for a contact. - Hash Table
+1. A list of pets and their unique names. - //Object
+2. The name, age, and the birthday of your best friend. - //Object
+3. The name and location of every company in a given city. - //Hash Table
+4. All of the books checked out from a library by a particular individual. - //Hash Table
+5. The primary and secondary phone numbers for a contact. - //Hash Table
 
 Programming Questions: 
 
