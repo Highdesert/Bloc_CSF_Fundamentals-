@@ -1,0 +1,148 @@
+Exercises: 
+
+1. What are some pros and cons of using linked lists instead of arrays?
+
+A: Some pros to using linked lists ove arrays are that since we dynamically instantiate every node in a linked list, our list never contains empty placeholders allowing for more efficient memory usage. Each node is independent in memory, so the OS may use any available memory location to store it. Node memory independence allows linked lists to grow to gargantuan sizes. 
+
+Some cons to using linked lists over arrays is that because each node may exist anywhere in physical memory, it can be inefficient to access an element within the list. Elements must be accessed in order, starting from the head. Elements in arrays can be accessed by their index which could be more efficient depending on size. 
+
+
+2. Come up with a real world example of a linked list.
+
+A: I think a good representation of a real world linked list would be a train. The train has a head (engine), and multiple carts (elements), and we can dynamically place those carts (elements), wherever we want to put them. We have to start at the head, and move to the next one, and then the one after that, and so on, all the way to the end. 
+
+####
+
+Programming questions: 
+
+1. The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+The push() function only works if the list only has one node. If the list has more than one node it wont work. 
+
+FUNCTION push(element)
+  CREATE node
+  SET node.val TO element
+  SET node.next TO null
+
+  IF there is NOT a head node 
+    THEN SET head to node
+  ELSE 
+    SET current to head
+  END IF
+
+  SET count to 0
+  WHILE current.next is NOT null
+    current = current.next
+    INCREMENT count
+  END WHILE 
+  SET current.next to node
+  END FUNCTION
+
+
+2. Given an unsorted singly linked list, remove all duplicates from the linked list.
+
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+}
+
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  push(val) {
+    let newNode = new Node(val);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  removeDuplicates() {
+    let prev = this.head;
+    let current = this.head.next;
+    let hash = {};
+
+    while (current != null) {
+      if (!hash[current.val]) {
+        hash[current.val] = true;
+      } else {
+        prev.next = current.next;
+        this.length--;
+      }
+      prev = current;
+      current = current.next;
+    }
+  }
+}
+
+let list = new SinglyLinkedList();
+
+list.push(100);
+list.push(101);
+list.push(101);
+list.removeDuplicates();
+console.log(list);
+
+
+3. Given an unsorted singly linked list, reverse it.
+
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+}
+
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  push(val) {
+    let newNode = new Node(val);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let prev = null;
+    let next;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
+}
+
+let list = new SinglyLinkedList();
+list.push(100);
+list.push(200);
+list.push(300);
+list.print(); 
+list.reverse();
+list.print();
