@@ -25,64 +25,6 @@
 
 Programming Questions: 
 
-class HashTable {
-  constructor(size = 53) {
-    this.keyMap = new Array(size);
-  }
-  _hash(key) {
-    let total = 0;
-    let WEIRD_PRIME = 31;
-    for (let i = 0; i < Math.min(key.length, 100); i++) {
-      let char = key[i];
-      let value = char.charCodeAt(0) - 96;
-      total = (total * WEIRD_PRIME + value) % this.keyMap.length;
-    }
-    return total;
-  }
-  set(key, value) {
-    let index = this._hash(key);
-    if (!this.keyMap[index]) {
-      this.keyMap[index] = [];
-    }
-    this.keyMap[index].push([key, value]);
-  }
-  get(key) {
-    let index = this._hash(key);
-    if (this.keyMap[index]) {
-      for (let i = 0; i < this.keyMap[index].length; i++) {
-        if (this.keyMap[index][i][0] === key) {
-          return this.keyMap[index][i][1];
-        }
-      }
-    }
-    return undefined;
-  }
-  keys() {
-    let keysArr = [];
-    for (let i = 0; i < this.keyMap.length; i++) {
-      if (this.keyMap[i]) {
-        for (let j = 0; j < this.keyMap[i].length; j++) {
-          if (!keysArr.includes(this.keyMap[i][j][0])) {
-            keysArr.push(this.keyMap[i][j][0]);
-          }
-        }
-      }
-    }
-    return keysArr;
-  }
-  values() {
-    let valuesArr = [];
-    for (let i = 0; i < this.keyMap.length; i++) {
-      if (this.keyMap[i]) {
-        for (let j = 0; j < this.keyMap[i].length; j++) {
-          if (!valuesArr.includes(this.keyMap[i][j][1]))
-            valuesArr.push(this.keyMap[i][j][1]);
-        }
-      }
-    }
-    return valuesArr;
-  }
-}
 
 
 
@@ -92,44 +34,327 @@ class HashTable {
 
 1. Create a hash table that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers.
 
-let ht = new HashTable(17);
-ht.set(999 - 999 - 9999, {
-  name: "Kim",
-  address: " 0000 Over The Hill St"
-});
-ht.set(888 - 888 - 8888, {
+class HashTable {
+  constructor(items) {
+    this.size = 97;
+    this.storage = [];
+  }
+
+  hash(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash += key.charCodeAt(i);
+    }
+    return hash % this.size;
+  }
+
+  add(key, value) {
+    let index = this.hash(key);
+    if (this.storage[index] === undefined) {
+      this.storage[index] = [[key, value]];
+    } else {
+      let duplicate = false;
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          console.log("This number is already in the system");
+          duplicate = true;
+        }
+      }
+      if (duplicate === false) {
+        this.storage[index].push([key, value]);
+      }
+    }
+  }
+  get(key) {
+    let index = this.hash(key);
+    if (this.storage[index] === undefined) {
+      return undefined;
+    } else {
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          return this.storage[index][i][1];
+        }
+      }
+    }
+  }
+}
+
+class PhoneBook {
+  constructor(entries) {
+    this.book = new HashTable(entries);
+  }
+
+  addContact({ phone, name, address }) {
+    this.book.add(phone, { name, address });
+  }
+
+  lookup({ phone }) {
+    return this.book.get(phone);
+  }
+}
+
+let contacts = new PhoneBook();
+
+contacts.addContact({
   name: "Andy",
-  address: " 123 Blossom Ave"
-});
-ht.set(777 - 777 - 7777, {
-  name: "Bob",
-  address: " 123 Snowy Lane"
+  address: "123 Hash Table Dr.",
+  phone: "222-222-2222"
 });
 
-console.log(ht.get(888 - 888 - 8888));
-console.log(ht.get(777 - 777 - 7777));
-console.log(ht.get(999 - 999 - 9999));
+contacts.addContact({
+  name: "Lisa",
+  address: "123 Who Knows Rd.",
+  phone: "333-333-3333"
+});
+
+console.log(
+  contacts.lookup({
+    phone: "222-222-2222"
+  })
+);
+
+console.log(
+  contacts.lookup({
+    phone: "333-333-3333"
+  })
+);
+
+
+
 
 2. Create a hash table that allows a store owner to track their store's inventory and quantity.
 
-let ht1 = new HashTable();
-ht1.set("Hoody", 115);
-ht1.set("Shirt", 350);
-ht1.set("Pants", 200);
-ht1.set("Shorts", 100);
+class HashTable {
+  constructor(items) {
+    this.hashTableSize = 100;
+    this.storage = [];
+  }
 
-console.log(ht1.get("Shirt"));
-console.log(ht1.get("Pants"));
-console.log(ht1.get("Shorts"));
+  hash(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash += key.charCodeAt(i);
+    }
+    return hash % this.hashTableSize;
+  }
+
+  add(key, value) {
+    let index = this.hash(key);
+    if (this.storage[index] === undefined) {
+      this.storage[index] = [[key, value]];
+    } else {
+      let duplicate = false;
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          this.storage[index][i][1] = value;
+          duplicate = true;
+        }
+      }
+      if (duplicate === false) {
+        this.storage[index].push([key, value]);
+      }
+    }
+  }
+
+  getItems(key) {
+    let index = this.hash(key);
+    if (this.storage[index] === undefined) {
+      return false;
+    } else {
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          return this.storage[index][i][1];
+        }
+      }
+    }
+  }
+
+  hasItem(key) {
+    return this.getItems(key) !== false;
+  }
+
+  remove(key) {
+    let index = this.hash(key);
+    if (this.storage[index].length === 1 && this.storage[index][0][0] === key) {
+      delete this.storage[index];
+    } else {
+      for (let i = 0; i < this.storage[index]; i++) {
+        if (this.storage[index][i][0] === key) {
+          delete this.storage[index][i];
+        }
+      }
+    }
+  }
+
+  print() {
+    return this.storage.filter(items => items !== undefined);
+  }
+}
+
+class Inventory {
+  constructor(items) {
+    this.inventory = new HashTable(items);
+  }
+
+  addItem({ item, amount }) {
+    let number = this.inventory.hasItem(item)
+      ? this.inventory.getItems(item) + amount
+      : amount;
+    console.log(amount);
+    this.inventory.add(item, number);
+  }
+
+  removeItem({ item, amount }) {
+    if (this.inventory.hasItem(item)) {
+      if (this.inventory.getItems(item) - amount >= 0) {
+        let number = this.inventory.getItems(item) - amount;
+        this.inventory.add(item, number);
+      } else {
+        console.log("not enough " + item + " in stock");
+      }
+    } else {
+      console.log("Item not in stock");
+    }
+  }
+
+  getInventory() {
+    return this.inventory.print();
+  }
+}
+
+let inventory = new Inventory();
+
+inventory.addItem({
+  item: "Jeans",
+  amount: 8
+});
+
+inventory.addItem({
+  item: "T-Shirts",
+  amount: 13
+});
+
+inventory.removeItem({
+  item: "Jeans",
+  amount: 3
+});
+
+inventory.removeItem({
+  amount: "T-Shirts",
+  item: 9
+});
+
+console.log(inventory.getInventory());
 
 3. Create a hash table that allows digital copies of newspapers to be entered and searched by publisher and publication date.
 
-let news = new HashTable();
-news.set("Author 1", "2013");
-news.set("Author 2", "2001");
-news.set("Author 3", "2000");
-news.set("Author 4", "2019");
+class HashTable {
+  constructor(items) {
+    this.hashTableSize = 100;
+    this.storage = [];
+  }
 
-console.log(news.get("Author 1"));
-console.log(news.get("Author 3"));
-console.log(news.get("Author 2"));
+  hash(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash += key.charCodeAt(i);
+    }
+    return hash % this.hashTableSize;
+  }
+
+  add(key, value) {
+    let index = this.hash(key);
+    if (this.storage[index] === undefined) {
+      this.storage[index] = [[key, value]];
+    } else {
+      let duplicate = false;
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          this.storage[index][i][1] = value;
+          duplicate = true;
+        }
+      }
+      if (duplicate === false) {
+        this.storage[index].push([key, value]);
+      }
+    }
+  }
+
+  get(key) {
+    let index = this.hash(key);
+    if (this.storage[index] === undefined) {
+      return false;
+    } else {
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          return this.storage[index][i][1];
+        }
+      }
+    }
+  }
+
+  remove(key) {
+    let index = this.hash(key);
+    if (this.storage[index].length === 1 && this.storage[index][0][0] === key) {
+      delete this.storage[index];
+    } else {
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          delete this.storage[index][i];
+        }
+      }
+    }
+  }
+
+  hasItem(key) {
+    return this.get(key) !== false;
+  }
+
+  print() {
+    return this.storage.filter(items => items !== undefined);
+  }
+}
+
+class OnlineNewspaper {
+  constructor() {
+    this.collection = new HashTable();
+  }
+
+  addPaper({ publisher, date, paper }) {
+    if (this.collection.hasItem(publisher) === false) {
+      this.collection.add(publisher, [[date, paper]]);
+    } else {
+      this.collection.get(publisher).push([date, paper]);
+    }
+  }
+
+  findPaper(publisher, date) {
+    if (this.collection.get(publisher) === undefined) {
+      console.log("Paper does not exist");
+    } else {
+      for (let i = 0; i < this.collection.get(publisher).length; i++) {
+        if (this.collection.get(publisher)[i][0] === date) {
+          return this.collection.get(publisher)[i][1];
+        }
+      }
+    }
+  }
+}
+
+let collection = new OnlineNewspaper();
+
+collection.addPaper({
+  publisher: "Fly Fishing Magazine",
+  date: "03-12-2008",
+  paper: "How To Catch A Trout"
+});
+
+collection.addPaper({
+  publisher: "Outside Magazine",
+  date: "03-04-2018",
+  paper: "Climber Free Solos"
+});
+
+console.log(collection.findPaper("Fly Fishing Magazine", "03-12-2008"));
+
+console.log(collection.findPaper("Outside Magazine", "03-04-2018"));

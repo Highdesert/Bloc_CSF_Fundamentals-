@@ -1,0 +1,27 @@
+1. What is a binary tree and what makes it unique to other trees?
+
+  A binary tree is a data structure made up of nodes, where each node has a left node(lesser), and a right node(larger). The top node is called the Root Node. 
+
+2. What is a heuristic?
+
+  A heuristic is a technique that approaches problem solving, learning, or discovery that employs a practical method, not guaranteed to be optimal or perfect, but is OK for the immediate goals. 
+
+3. What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+  Antivirus software often uses heuristic rules for detecting viruses and other forms of malware. Heuristic scanning looks for behavioral patterns common to a class or family of viruses, with different sets of rules for different viruses. Heuristic scanning has the potential to detect future viruses without requiring the virus to be first detected somewhere else. 
+
+
+4. What is the difference between a depth-first search and a breadth-first search?
+
+  The main difference between DFS and BFS is the order of visiting each node in a graph. In BFS, we start at the root visiting all immediate nodes before moving on to another node. 
+
+
+5. Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+  It is a graph that where the connection between nodes don't have a set direction, it does not have loops and it does not matter about the cost of travel between nodes. 
+
+
+
+6. What kind of graph is a binary search tree?
+
+  Directed, a-cyclic, unweighted
