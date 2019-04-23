@@ -1,0 +1,84 @@
+1. Using proper pseudo-code, describe the following primitive algorithms:
+
+Making coffee:
+
+  FUNCTION makeCoffee 
+
+    IF coffee is not ground
+
+      CALL grindCoffeeBeans
+
+    ELSE 
+
+      INSERT filter into coffeeMachine
+
+      ADD coffee
+
+      ADD water
+
+      SET brewCoffee to true
+
+    END IF
+
+  END FUNCTION
+
+
+Washing dishes:
+
+  FUNCTION washDishes
+
+    WHILE dishes are dirty THEN
+
+      ADD water to dishes
+
+      ADD soap to dishes
+
+      SCRUB dishes
+
+      ADD water to dishes
+
+      ADD dishes to dish rack
+
+    END WHILE
+
+    IF dishes are not dirty
+
+      ADD dishes to dish rack
+
+  END FUNCTION
+
+
+A choice of your own:
+
+FUNCTION goFishing
+
+  IF weather is nice && dayOff equals true THEN
+
+    SET stokeLevel to high
+
+    ADD trailer to truck
+
+    ADD gas to truck 
+
+    ADD food to cooler
+
+    GO fishing
+
+  ELSE 
+
+    SET stokeLevel to low
+
+    DONT go fishing
+
+  END IF
+
+END FUNCTION
+
+
+2. As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+
+1. Pandora uses algorithms to create custom radio stations tailored to the users listening history. The more likes or dislikes a certain song/station gets from the user, the more tailored the experience is. 
+
+2. Netflix uses millions of bits of data to be able to predict which shows and movies a user would like to watch through their service. Netflix also utilizes a well-refined recommendation algorithm to predict what users will likely want to watch. 
+
+3. Match.com is really good at predicting a users romantic life. Match.com along with other romantic dating websites use an algorithm known as synapse to predict possible matches. This algorithm takes into consideration not only stated user preference but also the activity and browsing patterns of users to predict likely matches. 
