@@ -1,0 +1,65 @@
+Short Answer: 
+
+1. What is a real-life scenario that uses linear search? 
+
+  A real-life example of a linear search would be searching though a list of applicants for a rental property. If the list is unordered, we go person by person until we find the person we are looking for. 
+
+2. What is a real-life scenario that uses binary search?
+
+  A real-life scenario that uses a binary search could be looking through a phone book to find a specific last name. We could open the phone book to the middle, and determine if the last name is "less than", or "greater than" the middle. Once we determine that, we can divide that in half and do the search again. Binary searches work when lists are sorted. 
+
+3. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
+
+  Seven iterations. 
+
+4. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
+
+  Three iterations. 
+
+5. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+  For an unsorted collection I would use a linear search method because to use a binary search method you would have to sort the collection first. 
+
+6. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+  For a sorted collection I would use a binary search since we could halve the collection each time we search, therefore not having to check each element individually. 
+
+Programming Assignment:
+
+1. You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
+
+  function findWord(arr, word) {
+   let high = arr.length - 1; 
+   let mid = 0; 
+   let low = 0; 
+
+   while (low <= high) {
+     mid = Math.floor((high + low) / 2)
+
+     if (arr[mid] === word) {
+       return arr[mid]; 
+     } else if (word > arr[mid]) {
+       low = mid + 1; 
+     } else {
+       high = mid - 1; 
+     }
+   }
+
+   return 'Not Found'
+ }
+
+ console.log(findWord(['albatross', 'duck', 'elephant', 'sheep'], 'albatross'))
+
+ 2. You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
+
+  function findFishy(arr, target) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === target) {
+        return 'You netted the only white-spotted goldfish!' 
+      }
+    }
+
+    return 'You did not net the white-spotted goldfish, try again another time';
+  }
+
+  console.log(findFishy(['amber', 'brime', 'crappy', 'permit',   'white-spotted goldfish'], 'white-spotted goldfish'))
