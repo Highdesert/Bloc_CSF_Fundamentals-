@@ -1,0 +1,57 @@
+Exercises 
+
+1. function bubbleSort(arr) {
+  let noSwaps;
+  for (let i = arr.length; i > 0; i--) {
+    noSwaps = true;
+    for (let j = 0; j < i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+        noSwaps = false;
+      }
+    }
+    if (noSwaps) break;
+  }
+  return arr;
+}
+
+console.log(bubbleSort([5, 4, 7, 10, 3]));
+
+2. FUNCTION quickSort(arr)
+    SET pivotPoint to arr.length - 1
+    SET newArray to EMPTY
+
+    FOR i = first index of array to last index of array - 1
+
+      IF array[i] > pivotPoint THEN 
+        SET array[i] TO pivotPoint[i + 1]
+
+      ELSE IF array[i] < pivotPoint THEN 
+        APPEND array[i] to newArray
+
+      ELSE 
+        CALL quickSort
+
+      END IF
+
+    END FOR
+
+    RETURN newArray + array
+
+  END FUNCTION
+
+3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+  Quick Sort time complexity worst case is 0(n2). 
+
+  In quick sort you loop through the entire collection once using divide and conquer to sort through the remaining elements in the collection. The time complexity gets smaller with each recursive call. Quick sort works fast than other sorting algorithms when the collection of data is small. 
+
+  Merge Sort time complexity worst case is 0(nlogn)
+
+  Merge sort uses a similar divide and conquer process to sort. Quick sort doesn't need to iterate through the entire collection multiple times because elements are sorted in smaller groups before sorted in the entire collection. The runtime is usually consistent regardless of collection size. 
+
+4. All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
+
+  The idea behind bucket sort is that you take the collection of elements and divide them base on a preselected order into buckets. Then using a recursive function you sort the buckets. Bucket sort is useful when the input is uniformly distributed over a range.
